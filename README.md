@@ -26,9 +26,8 @@ VirtualBox, donc utilisable depuis Windows, Mac ou Linux.
 
 La machine installée est une *Debian GNU/Linux* exploitant
 *MapServer* en FastCGI derrière le serveur HTTP *Nginx*.
-
-Il est bien-sûr possible d'utiliser d'autres environnements comme par
-exemple Apache sur Windows.
+Il est bien-sûr possible d'utiliser d'autres environnements
+comme par exemple Apache sur Windows.
 
 Après avoir cloné localement ce dépôt Git, il faut récupérer l'archive :
 http://esipe.geonef.fr/gotham-city/extra-data.tar.bz2
@@ -54,5 +53,5 @@ Licence
 -------
 
 Les fichiers présents dans ce dépôt sont distribués sous les termes de
-la licence CeCILL 2.1 contenue dans le fichier ./LICENSE et dont l'original
+la licence CeCILL 2.1 contenue dans le fichier [LICENSE](LICENSE)  et dont l'original
 est disponible à l'URL http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.html
