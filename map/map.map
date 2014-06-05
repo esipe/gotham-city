@@ -1,0 +1,941 @@
+MAP
+	IMAGETYPE      PNG
+	EXTENT         -74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+	SIZE           600 800
+	IMAGECOLOR     0 0 0
+	NAME           gotham
+	FONTSET	       fonts/font/fonts.list
+	
+	OUTPUTFORMAT
+    		NAME "png"
+		DRIVER AGG/PNG
+ 		MIMETYPE "image/png"
+    		IMAGEMODE     RGBA
+		EXTENSION "png"
+    		TRANSPARENT   ON
+ 	 END	
+
+	PROJECTION
+		"init=epsg:4326"
+	END
+	WEB
+		METADATA
+	  		"wms_enable_request"      "*"
+			"wms_srs"                 "EPSG:4326"
+	 		"wms_title"               "gotham"
+	  		"wms_online_resource"     "http://genot-mapserver/?map=/map/map.map&"
+		END
+	END
+	
+	LAYER	
+		MAXSCALE 30000 
+ 		MINSCALE 1
+		
+		NAME "gothammap"
+		DATA "data/gothammap_georef.tif"
+		TYPE RASTER
+		STATUS ON
+	END
+	
+	LAYER
+		MAXSCALE 450000 
+ 		MINSCALE 30000
+		NAME "gothammapzoom"
+		DATA "data/Gotham_map_georef.tif"
+		TYPE RASTER
+		STATUS ON
+	END
+	
+	
+	LAYER
+		NAME nature2
+		TYPE LINE
+		STATUS ON
+		MAXSCALE 100000 
+ 		MINSCALE 30000
+		CONNECTIONTYPE OGR
+		CONNECTION "data/nature.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"nature2"
+		END
+		CLASS
+			STYLE
+				COLOR 0 100 255
+				WIDTH 4
+			END
+			TEXT '[Nom]'
+			LABEL
+				
+				COLOR 0 0 0
+				TYPE truetype
+				FONT "bold"
+				SIZE 6
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 2
+  				OUTLINECOLOR 255 255 255
+
+			END
+
+		END
+	END
+
+	LAYER
+		NAME nature1
+		TYPE LINE
+		STATUS ON
+		MAXSCALE 30000
+ 		MINSCALE 1
+		CONNECTIONTYPE OGR
+		CONNECTION "data/nature.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"nature1"
+		END
+		CLASS
+			STYLE
+				COLOR 0 100 255
+				WIDTH 6
+			END
+			TEXT '[Nom]'
+			LABEL
+				
+				COLOR 0 0 0
+				TYPE truetype
+				FONT "bold"
+				SIZE 6
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 2
+  				OUTLINECOLOR 255 255 255
+
+			END
+
+		END
+	END
+	
+	LAYER
+		NAME nature3
+		TYPE LINE
+		STATUS ON
+		MAXSCALE 450000
+ 		MINSCALE 100000
+		CONNECTIONTYPE OGR
+		CONNECTION "data/nature.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"nature3"
+		END
+		CLASS
+			STYLE
+				COLOR 0 100 255
+				WIDTH 2
+			END
+			TEXT '[Nom]'
+			LABEL
+				
+				COLOR 0 0 0
+				TYPE truetype
+				FONT "bold"
+				SIZE 6
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 2
+  				OUTLINECOLOR 255 255 255
+
+			END
+
+		END
+	END
+
+
+	
+	LAYER
+		NAME	area
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"area"
+		END
+		TYPE	LINE
+		STATUS	ON
+		CONNECTIONTYPE OGR
+		CONNECTION "data/area.shp"
+		CLASS
+			STYLE
+				COLOR	255 85 0
+			END
+		END
+	END
+
+	
+
+	LAYER
+		NAME	zones
+		PROCESSING "LABEL_NO_CLIP=True"
+		MAXSCALE 450000 
+ 		MINSCALE 100000
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"zones"
+		END
+		TYPE	POLYGON
+		STATUS	ON
+		CONNECTIONTYPE OGR
+		CONNECTION "data/zones.shp"
+		
+		CLASS
+			
+			EXPRESSION('[Type]'='Ile')
+			TEXT '[Nom]'
+			LABEL
+				
+				COLOR 0 0 0
+				TYPE truetype
+				FONT "bold"
+				SIZE 9
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 2
+  				OUTLINECOLOR 255 255 255
+
+			END
+			STYLE
+				OUTLINECOLOR 175 179 138
+				COLOR 241 244 199
+			END
+		END
+		
+	END
+
+	LAYER
+		NAME	zonesNature
+		PROCESSING "LABEL_NO_CLIP=True"
+		MAXSCALE 15000
+ 		MINSCALE 1
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"zonesNature"
+		END
+		TYPE	POLYGON
+		STATUS	ON
+		CONNECTIONTYPE OGR
+		CONNECTION "data/zones.shp"
+		
+		CLASS			
+			EXPRESSION('[Type]'='Parc')
+			COLOR	186 221 105
+			TEXT'[Nom]'
+			LABEL
+				COLOR "#000000"
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 3
+				OUTLINECOLOR "#FFFFFF"
+			END
+		END	
+		CLASS			
+			EXPRESSION('[Type]'='Port' || '[Type]'='Batiment')
+			COLOR	161 191 221
+			TEXT'[Nom]'
+			LABEL
+				COLOR "#000000"
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 3
+				OUTLINECOLOR "#FFFFFF"
+			END
+		END	
+
+
+	END
+
+	SYMBOL
+  		NAME "hatchsymbol"
+  		TYPE hatch
+	END
+
+
+	LAYER
+		NAME	zonesLabel
+		PROCESSING "LABEL_NO_CLIP=ON"
+		MAXSCALE 100000
+ 		MINSCALE 1
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"zonesLabel"
+		END
+		TYPE	POLYGON
+		STATUS	ON
+		CONNECTIONTYPE OGR
+		CONNECTION "data/zones.shp"
+
+		CLASS
+			EXPRESSION('[Type]'='Quartier')
+			TEXT '[Nom]'
+			LABEL
+				COLOR "#000000"
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 3
+				OUTLINECOLOR "#FFFFFF"
+			END
+		END
+				
+	END
+
+		
+
+
+
+	LAYER
+		NAME	zonesDetails
+		PROCESSING "LABEL_NO_CLIP=True"
+		MAXSCALE 100000 
+ 		MINSCALE 1
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"zones"
+		END
+		TYPE	POLYGON
+		STATUS	ON
+		CONNECTIONTYPE OGR
+		CONNECTION "data/zones.shp"	
+		
+		
+
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Otisburg$')
+			COLOR	64 64 64
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Arkham Island$')
+			COLOR	123 123 123
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Burnley$')
+			COLOR	215 136 33
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'The Bowery$')
+			COLOR	215 136 33
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Amusement Mile$')
+			COLOR	160 127 189
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Crime Alley$')
+			COLOR	160 127 189
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Robbinsville$')
+			COLOR	33 18 31
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Coventry$')
+			COLOR	186 221 105
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Robinson Park$')
+			COLOR	142 180 129
+		END
+		CLASS
+			EXPRESSION('[Nom]'~*'Upper East Side$')
+			COLOR 255 255 255
+			OUTLINECOLOR 0 0 0
+			STYLE
+								
+				SYMBOL "hatchsymbol"
+    				COLOR 0 0 0
+    				SIZE 10
+    				ANGLE 90
+			END
+		END
+		
+		
+		
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'The Cauldron - Uper West Side$')
+			COLOR	164 191 226
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Diamond District$')
+			COLOR	164 191 226
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Fashion District$')
+			COLOR	215 33 71
+		END
+		CLASS
+			EXPRESSION('[Nom]'~*'City Hall District$')
+			COLOR 120 120 120
+			OUTLINECOLOR 0 0 0
+			STYLE
+								
+				SYMBOL "hatchsymbol"
+    				COLOR 241 149 149
+    				SIZE 10
+    				ANGLE 45
+			END
+		END
+		CLASS
+			EXPRESSION('[Nom]'~*'East End$')
+			COLOR 120 120 120
+			OUTLINECOLOR 0 0 0
+			STYLE
+								
+				SYMBOL "hatchsymbol"
+    				COLOR 241 149 149
+    				SIZE 10
+    				ANGLE 45
+			END
+		END
+		CLASS
+			EXPRESSION('[Nom]'~*'Financial District$')
+			COLOR 120 120 120
+			OUTLINECOLOR 0 0 0
+			STYLE
+								
+				SYMBOL "hatchsymbol"
+    				COLOR 241 149 149
+    				SIZE 10
+    				ANGLE 45
+			END
+			
+		END
+		CLASS
+			EXPRESSION('[Nom]'~*'Old Gotham$')
+			COLOR 120 120 120
+			OUTLINECOLOR 0 0 0
+			STYLE
+								
+				SYMBOL "hatchsymbol"
+    				COLOR 241 149 149
+    				SIZE 10
+    				ANGLE 45
+			END
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Battergate - Uper West Side$')
+			COLOR	123 96 31
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Lower West Side$')
+			COLOR	150 163 152
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Chinatown$')
+			COLOR	150 163 152
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Tricorner$')
+			COLOR	137 141 221
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Paris Island$')
+			COLOR	255 255 255
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'~*'Sullivan Island$')
+			COLOR	255 255 255
+		END
+		CLASS
+			OUTLINECOLOR 0 0 0
+			EXPRESSION('[Nom]'=''&&'[Type]'~*'Quartier$')
+			COLOR	255 255 255
+		END
+		CLASS
+			EXPRESSION('[Nom]'~*'Blackgate Isle$')
+			COLOR 255 170 0
+			OUTLINECOLOR 0 0 0
+			STYLE								
+				SYMBOL "hatchsymbol"
+    				COLOR 0 0 0
+    				SIZE 10
+    				ANGLE 90
+			END
+		END	
+		
+	END
+
+	
+	LAYER
+		NAME batiments
+		TYPE POINT
+		STATUS ON
+		PROCESSING "LABEL_NO_CLIP=True"
+		CONNECTIONTYPE OGR
+		CONNECTION "data/batiments.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		MAXSCALE 45000 
+ 		MINSCALE 1
+		METADATA
+			"wms_title"	"batiments"
+		END
+
+		CLASS
+			TEXT '[Nom]'
+			LABEL
+				COLOR 255 255 255
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				PARTIALS FALSE
+				BUFFER 3
+				OUTLINECOLOR "#8800FF"
+			END
+			SYMBOL "symbols/square.png"
+			SIZE 10
+		END
+
+	END
+
+	LAYER
+		NAME personnages
+		TYPE POINT
+		STATUS ON
+		PROCESSING "LABEL_NO_CLIP=True"
+		CONNECTIONTYPE OGR
+		CONNECTION "data/personnages.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		MAXSCALE 100000 
+ 		MINSCALE 35000
+		METADATA
+			"wms_title"	"personnages"
+		END
+		CLASS
+			TEXT '[Nom]'
+			LABEL
+				COLOR 255 255 255
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				BUFFER 3
+				OUTLINECOLOR "#0000FF"
+				PARTIALS FALSE
+			END
+			EXPRESSION ('[Type]' = "Heros" &&  '[Zoom]' != "Oui")
+
+			SYMBOL "symbols/star.png"
+			SIZE 15
+			
+		END
+		CLASS
+			TEXT '[Nom]'
+			LABEL
+				COLOR 255 255 255
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				BUFFER 3
+				OUTLINECOLOR "#FF0000"
+				PARTIALS FALSE
+			END
+			EXPRESSION ('[Type]' = "Vilain")
+			SYMBOL "symbols/star2.png"
+			SIZE 15
+		END		
+	END
+
+	
+	LAYER
+		NAME personnages2
+		TYPE POINT
+		STATUS ON
+		PROCESSING "LABEL_NO_CLIP=True"
+		CONNECTIONTYPE OGR
+		CONNECTION "data/personnages.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		MAXSCALE 35000 
+ 		MINSCALE 20000
+		METADATA
+			"wms_title"	"personnages2"
+		END
+		CLASS
+			TEXT '[Nom]'
+			LABEL
+				COLOR 255 255 255
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				BUFFER 3
+				OUTLINECOLOR "#0000FF"
+				PARTIALS FALSE
+			END
+			EXPRESSION ('[Type]' = "Heros" &&  '[Zoom]' != "Non")
+
+			SYMBOL "symbols/star.png"
+			SIZE 15
+			
+		END
+		CLASS
+			TEXT '[Nom]'
+			LABEL
+				COLOR 255 255 255
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				BUFFER 3
+				OUTLINECOLOR "#FF0000"
+				PARTIALS FALSE
+			END
+			EXPRESSION ('[Type]' = "Vilain")
+			SYMBOL "symbols/star2.png"
+			SIZE 15
+		END		
+	END
+
+	LAYER
+		NAME personnagesImage
+		TYPE POINT
+		STATUS ON
+		MAXSCALE 20000
+ 		MINSCALE 1
+		PROCESSING "LABEL_NO_CLIP=True"
+		CONNECTIONTYPE OGR
+		CONNECTION "data/personnages.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"personnagesImage"
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Harley Quinn")
+			SYMBOL "symbols/HarleyQuinn.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Killer Croc")
+			SYMBOL "symbols/KillerCroc.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Silence")
+			SYMBOL "symbols/Silence.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Catwoman")
+			SYMBOL "symbols/Catwoman.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Joker")
+			SYMBOL "symbols/Joker.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Epouvantail")
+			SYMBOL "symbols/Epouvantail.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Bane")
+			SYMBOL "symbols/Bane.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Batman" && '[Zoom]' = "Oui")
+			#EXPRESSION ('[Nom]' = "Batman")
+			SYMBOL "symbols/Batman.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Mr Freeze")
+			SYMBOL "symbols/MisterFreeze.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Victor Zsasz")
+			SYMBOL "symbols/VictorZsasz.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Double Face")
+			SYMBOL "symbols/DoubleFace.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Chapelier Fou")
+			SYMBOL "symbols/ChapelierFou.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Gueule d'argile")
+			SYMBOL "symbols/GueuleDargile.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Pingouin")
+			SYMBOL "symbols/Pingouin.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Sphinx")
+			SYMBOL "symbols/Sphinx.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Black Mask")
+			SYMBOL "symbols/BlackMask.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Poison Ivy")
+			SYMBOL "symbols/PoisonIvy.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Gordon")
+			SYMBOL "symbols/Gordon.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Batgirl")
+			SYMBOL "symbols/Batgirl.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Robin" && '[Zoom]' = "Oui")
+			#EXPRESSION ('[Nom]' = "Robin")
+			SYMBOL "symbols/Robin.png"
+			SIZE 60			
+		END
+		CLASS
+			EXPRESSION ('[Nom]' = "Nightwing")
+			SYMBOL "symbols/Nightwing.png"
+			SIZE 60			
+		END
+				
+	END
+	
+	LAYER
+		NAME transports2
+		TYPE LINE
+		STATUS ON
+		MAXSCALE 100000
+ 		MINSCALE 30000
+		CONNECTIONTYPE OGR
+		CONNECTION "data/transports.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"transports2"
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Metro")
+			STYLE
+  				COLOR 120 50 180
+  				WIDTH 7.0
+  				LINECAP BUTT
+  				PATTERN 7.0 5.0 END
+			END
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Pont")
+			STYLE
+  				COLOR 125 125 125
+  				WIDTH 8
+			END
+			STYLE
+ 				COLOR 255 255 255
+  				WIDTH 3
+			END 
+			
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Tunnel")
+			STYLE
+				COLOR 125 125 125
+  				WIDTH 7.0
+  				LINECAP BUTT
+  				PATTERN 7.0 5.0 END
+			END
+		END
+	END
+
+	LAYER
+		NAME transports1
+		TYPE LINE
+		STATUS ON
+		MAXSCALE 30000
+ 		MINSCALE 1
+		CONNECTIONTYPE OGR
+		CONNECTION "data/transports.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"transports1"
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Metro")
+			STYLE
+  				COLOR 120 50 180
+  				WIDTH 7.0
+  				LINECAP BUTT
+  				PATTERN 7.0 5.0 END
+			END
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Pont")
+			STYLE
+  				COLOR 125 125 125
+  				WIDTH 8
+			END
+			STYLE
+ 				COLOR 255 255 255
+  				WIDTH 3
+			END 
+			
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Tunnel")
+			STYLE
+				COLOR 125 125 125
+  				WIDTH 7.0
+  				LINECAP BUTT
+  				PATTERN 7.0 5.0 END
+			END
+		END
+	END
+
+	LAYER
+		NAME transports3
+		TYPE LINE
+		STATUS ON
+		MAXSCALE 450000
+ 		MINSCALE 100000
+		CONNECTIONTYPE OGR
+		CONNECTION "data/transports.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"transports3"
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Metro")
+			STYLE
+  				COLOR 120 50 180
+  				WIDTH 5.0
+  				LINECAP BUTT
+  				PATTERN 5.0 3.0 END
+			END
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Pont")
+			STYLE
+  				COLOR 125 125 125
+  				WIDTH 6
+			END
+			STYLE
+ 				COLOR 255 255 255
+  				WIDTH 2
+			END 
+			
+		END
+		CLASS
+			EXPRESSION ('[Type]' = "Tunnel")
+			STYLE
+				COLOR 125 125 125
+  				WIDTH 5.0
+  				LINECAP BUTT
+  				PATTERN 5.0 3.0 END
+			END
+		END
+	END
+
+
+
+	LAYER
+		NAME transports_label
+		TYPE LINE
+		STATUS ON
+		PROCESSING "LABEL_NO_CLIP=True"
+		CONNECTIONTYPE OGR
+		MAXSCALE 50000 
+ 		MINSCALE 1
+		CONNECTION "data/transports.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"transports_label"
+		END
+		
+		CLASS
+		TEXT'[Nom]'
+			LABEL
+				COLOR 60 255 60
+				TYPE truetype
+				FONT "normal"
+				SIZE 8
+				POSITION AUTO
+				PARTIALS FALSE
+				SHADOWSIZE 2 2
+				SHADOWCOLOR 0 0 0
+			END
+		SIZE 0
+		END
+
+	END
+
+	
+	LAYER
+		NAME trophes
+		TYPE POINT
+		STATUS ON
+		PROCESSING "LABEL_NO_CLIP=True"
+		CONNECTIONTYPE OGR
+		
+		CONNECTION "data/trophes.shp"
+		EXTENT	-74.4495592927001013 39.4732721981750174 -74.3750454782537247 39.5639846679358200
+		METADATA
+			"wms_title"	"transports_label"
+		END
+		CLASS
+		SYMBOL "symbols/trophe.png"
+			SIZE 15
+		END
+
+		CLUSTER
+			MAXDISTANCE 15
+			REGION "ellipse"
+		END
+		
+
+	END
+
+	
+
+	
+	
+END
+
+

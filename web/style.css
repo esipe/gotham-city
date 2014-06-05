@@ -1,0 +1,85 @@
+#corp
+{
+	background: url(images/back.jpg) no-repeat center center; 
+	//width:100%;
+	//background-image:url(images/back.jpg);
+	//background-repeat:no-repeat;
+	-webkit-background-size: cover;
+ 	-moz-background-size: cover;
+  	-o-background-size: cover;
+ 	background-size: 100%;	
+	height: 100%;
+}
+
+
+#ban{
+	width:auto;
+	height:auto;
+}
+
+.banneritem{
+	display:block;
+	float:left;
+}
+
+.clear{
+	clear:both;
+}
+
+
+#ig2k
+{
+	background-repeat:no-repeat;
+	background-size:100%;
+	height:19%;
+	width:9%;
+	background-image:url(images/ig.jpg);
+}
+
+#resume
+{
+	color:#FFF;
+	margin-right:50%;
+	margin-left:5%;
+	font-weight:bold;
+	font-size:150%;
+}
+
+#banimage
+{
+	margin-top:0.26%;
+	height:18%;
+	background-repeat:no-repeat;
+	width:80%;
+	background-image:url(images/banner.jpg);
+	background-size : 100%;
+}
+
+#esipe
+{
+	margin-top:3%;
+	margin-bottom:-3%;
+	background-repeat:no-repeat;
+	background-size:100%;
+	height:20%;
+	width:10%;
+	background-image:url(images/esipe.png);
+}
+
+#menu{
+	text-align:center;
+}
+
+a{
+	padding-left:5%;
+	padding-right:5%;
+	color:#FFF;
+	font-family: arial;
+}
+
+
+
+/*#map{
+	width:50px;
+	height:50px;
+}
